@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RUMBCODE — найди своё IT-направление и дойди по нему до результата</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EDF2F5;--surface:#fff;--ink:#0F2A43;--muted:#52687B;--line:#C9D6DF;--accent:#0E7C86;--on-accent:#fff;--signal:#E8A33D;
+--head:'Unbounded','Trebuchet MS',sans-serif;--body:'Onest','Segoe UI',Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1A28;--surface:#11283B;--ink:#E6EEF4;--muted:#9DB3C4;--line:#23405A;--accent:#3FC1C9;--on-accent:#06222A;--signal:#F2B04C}}
+:root[data-theme="dark"]{--bg:#0A1A28;--surface:#11283B;--ink:#E6EEF4;--muted:#9DB3C4;--line:#23405A;--accent:#3FC1C9;--on-accent:#06222A;--signal:#F2B04C}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(34px,6vw,64px);font-weight:700}
+h2{font-size:clamp(26px,4vw,40px);font-weight:700;max-width:18ch}
+h3{font-size:18px;font-weight:500}
+p{margin:0}.lead{color:var(--muted);max-width:56ch;font-size:19px}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;padding:14px 26px;border-radius:999px;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+/* hero */
+.hero{min-height:92vh;display:flex;align-items:center;padding:56px 0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.brand{font-family:var(--head);font-weight:700;font-size:15px;margin-bottom:28px;color:var(--accent)}
+.hero h1{margin-bottom:22px}.hero .lead{margin-bottom:32px}
+.compass{width:100%;max-width:420px;justify-self:center}
+.compass .ring{fill:none;stroke:var(--line);stroke-width:2}
+.compass .tick{stroke:var(--line);stroke-width:2}
+.compass text{fill:var(--muted);font:500 11px var(--body);text-anchor:middle}
+.compass .hit{fill:var(--accent);font-weight:600;opacity:0;animation:hit .6s 2.6s forwards}
+@keyframes hit{to{opacity:1}}
+.needle{transform-origin:200px 200px;animation:swing 3.2s cubic-bezier(.3,.7,.3,1) forwards}
+@keyframes swing{0%{transform:rotate(-150deg)}30%{transform:rotate(80deg)}55%{transform:rotate(5deg)}78%{transform:rotate(52deg)}100%{transform:rotate(45deg)}}
+/* scene: маяк */
+.scene{height:340vh;position:relative}
+.stick{position:sticky;top:0;height:100vh;overflow:hidden;background:#030a12;color:#EAF3F7;--d:0;--i:0;--f:0;--a:104deg;--gx:20%;--t1:1;--t2:0;--e:0}
+.stick>*{position:absolute}
+.night{inset:0;background:linear-gradient(#050d17 0,#0a2236 62%,#07192a 62.1%,#02070d 100%)}
+.dusk{inset:0;background:linear-gradient(#1d4a66 0,#4a8a97 48%,#f0b877 62%,#1d5068 62.1%,#0b2a3d 100%);opacity:calc(1 - var(--d))}
+.stars{inset:0 0 38% 0;opacity:var(--d);background:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 27% 9%,#dfeaf2,transparent),radial-gradient(1.5px 1.5px at 44% 22%,#fff,transparent),radial-gradient(1px 1px at 61% 12%,#dfeaf2,transparent),radial-gradient(1.5px 1.5px at 78% 20%,#fff,transparent),radial-gradient(1px 1px at 90% 8%,#dfeaf2,transparent),radial-gradient(1px 1px at 70% 34%,#dfeaf2,transparent)}
+.waves{left:0;right:0;top:62%;bottom:0;background:repeating-linear-gradient(rgba(255,255,255,.05) 0 1px,transparent 1px 10px);-webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent);animation:drift 7s linear infinite}
+@keyframes drift{to{background-position:0 10px}}
+.glint{left:0;right:0;top:62%;height:38%;opacity:var(--i);mix-blend-mode:screen;background:radial-gradient(ellipse 22% 70% at var(--gx) 0,rgba(255,238,195,.6),transparent 72%);-webkit-mask-image:repeating-linear-gradient(0deg,#000 0 2px,transparent 2px 7px);mask-image:repeating-linear-gradient(0deg,#000 0 2px,transparent 2px 7px)}
+.lh{left:13%;bottom:calc(38% - 8px);width:54px;height:158px;transform:translateX(-50%)}
+.origin{left:13%;bottom:calc(38% + 124px);width:0;height:0}
+.origin>*{position:absolute}
+.beam{left:0;top:0;width:170vmax;height:170vmax;transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:var(--i);-webkit-mask-image:radial-gradient(circle closest-side,#000 0,rgba(0,0,0,.6) 12%,transparent 46%);mask-image:radial-gradient(circle closest-side,#000 0,rgba(0,0,0,.6) 12%,transparent 46%)}
+.b1{background:conic-gradient(from calc(var(--a) - 17deg) at 50% 50%,transparent 0,rgba(255,236,190,.03) 2deg,rgba(255,236,190,.10) 6deg,rgba(255,238,195,.22) 12deg,rgba(255,240,200,.30) 17deg,rgba(255,238,195,.22) 22deg,rgba(255,236,190,.10) 28deg,rgba(255,236,190,.03) 32deg,transparent 34deg,transparent 360deg)}
+.b2{background:conic-gradient(from calc(var(--a) - 6deg) at 50% 50%,transparent 0,rgba(255,248,225,.12) 3deg,rgba(255,250,235,.50) 6deg,rgba(255,248,225,.12) 9deg,transparent 12deg,transparent 360deg)}
+.bloom{left:-90px;top:-90px;width:180px;height:180px;border-radius:50%;mix-blend-mode:screen;opacity:calc(var(--i)*(.8 + var(--f)*.2));background:radial-gradient(circle,#fff6dc 0,rgba(255,236,180,.8) 8%,rgba(255,220,150,.25) 30%,transparent 62%)}
+.flash{inset:0;mix-blend-mode:screen;opacity:calc(var(--f)*.9);background:radial-gradient(circle at 13% 46%,rgba(255,244,215,.9),rgba(255,230,170,.25) 35%,transparent 70%)}
+.t{left:0;right:0;padding:0 24px;text-align:center;text-shadow:0 2px 24px rgba(2,8,14,.7)}
+.t1{top:26%;font:500 clamp(22px,4vw,40px)/1.3 var(--head);opacity:var(--t1);transform:translateY(calc((1 - var(--t1))*-16px))}
+.t2{top:28%;opacity:var(--t2);transform:translateY(calc((1 - var(--t2))*16px))}
+.t2 h2{max-width:none;font-size:clamp(36px,7vw,84px);text-shadow:0 0 36px rgba(255,226,160,calc(var(--t2)*.55))}
+.t2 p{margin:18px auto 0;max-width:40ch;color:#C5D6E2;font-size:19px}
+.fade-t,.fade-b{left:0;right:0;pointer-events:none}
+.fade-t{top:0;height:24vh;background:linear-gradient(var(--bg),transparent);opacity:max(0,calc(1 - var(--d)*4))}
+.fade-b{bottom:0;height:30vh;background:linear-gradient(transparent,var(--bg));opacity:var(--e)}
+.hint{left:0;right:0;bottom:5vh;text-align:center;font-size:13px;color:#C5D6E2;opacity:max(0,calc(1 - var(--d)*4))}
+@media (prefers-reduced-motion:reduce){.scene{height:100vh}.stick{position:relative}.waves{animation:none}}
+/* problem */
+.stats{display:flex;flex-wrap:wrap;gap:48px 80px;align-items:flex-end;margin-top:40px}
+.big{font-family:var(--head);font-weight:700;font-size:clamp(72px,14vw,150px);line-height:1;color:var(--accent)}
+.stats p{max-width:28ch;color:var(--muted)}
+.mid{font-family:var(--head);font-weight:700;font-size:clamp(34px,6vw,60px);line-height:1}
+.src{margin-top:32px;font-size:13px;color:var(--muted)}
+/* steps */
+.steps{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;position:relative}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--on-accent);font:700 16px var(--head);margin-bottom:18px}
+.step p{color:var(--muted);margin-top:8px}
+/* mocks */
+.mocks{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.mock{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mock header{padding:10px 16px;border-bottom:1px solid var(--line);font:600 13px var(--body);color:var(--muted);display:flex;gap:6px;align-items:center}
+.mock header i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.mock .body{padding:18px;display:grid;gap:12px;font-size:14px}
+.field{border:1px solid var(--line);border-radius:8px;padding:8px 12px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);border-radius:999px;padding:4px 12px}.chip.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.fake{background:var(--accent);color:var(--on-accent);text-align:center;border-radius:8px;padding:9px;font-weight:600}
+.row{display:grid;gap:5px}.bar{height:8px;border-radius:8px;background:var(--line);overflow:hidden}.bar b{display:block;height:100%;background:var(--signal)}
+.week{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:9px}.done{color:var(--accent);font-weight:600}
+.cap{margin-top:20px;font-size:14px;color:var(--muted)}
+/* diff */
+.diff{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 56px;margin-top:48px}
+.diff div{border-top:2px solid var(--accent);padding-top:16px}
+.diff p{color:var(--muted);margin-top:6px}
+/* uni */
+.uni{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.uni .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.uni ul{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.uni li{padding-left:22px;position:relative;color:var(--muted)}
+.uni li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--signal)}
+/* roadmap */
+.road{position:relative;margin-top:48px;padding-left:40px;--p:0}
+.road::before,.road::after{content:"";position:absolute;left:9px;top:8px;width:3px;border-radius:3px}
+.road::before{bottom:8px;background:var(--line)}
+.road::after{height:calc((100% - 16px)*var(--p));background:var(--accent)}
+.stage{position:relative;padding-bottom:36px;opacity:.45;transition:opacity .4s}
+.stage::before{content:"";position:absolute;left:-39px;top:6px;width:21px;height:21px;border-radius:50%;background:var(--bg);border:3px solid var(--line);transition:border-color .4s,background .4s}
+.stage.on{opacity:1}.stage.on::before{border-color:var(--accent);background:var(--accent)}
+.stage small{color:var(--accent);font-weight:600}.stage p{color:var(--muted);margin-top:4px;max-width:52ch}
+/* end */
+.end{text-align:left}.end .acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+/* motion */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s;transition-delay:calc(var(--i,0)*.15s)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:820px){section{padding:64px 0}.hero .wrap,.uni .wrap{grid-template-columns:1fr}.steps,.mocks,.diff{grid-template-columns:1fr}.compass{max-width:320px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.needle{animation:none;transform:rotate(45deg)}.compass .hit{animation:none;opacity:1}.js .rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<section class="hero"><div class="wrap">
+<div>
+<div class="brand">RUMBCODE</div>
+<h1>Найди своё IT-направление и дойди по нему до результата</h1>
+<p class="lead">Платформа подберёт направления под твои интересы и поведёт по программе на несколько месяцев: от первой темы до итогового проекта.</p>
+<a class="btn" href="#how">Узнать, как это работает</a>
+</div>
+<svg class="compass" viewBox="0 0 400 400" role="img" aria-label="Компас, стрелка которого выбирает IT-направление">
+<circle class="ring" cx="200" cy="200" r="130"/><circle class="ring" cx="200" cy="200" r="100" stroke-dasharray="2 8"/>
+<g class="tick"><line x1="200" y1="62" x2="200" y2="78"/><line x1="200" y1="322" x2="200" y2="338"/><line x1="62" y1="200" x2="78" y2="200"/><line x1="322" y1="200" x2="338" y2="200"/></g>
+<text x="200" y="40">Веб</text><text x="298" y="102" class="hit">Данные</text><text x="360" y="204">Мобайл</text><text x="298" y="308">Тесты</text>
+<text x="200" y="372">Дизайн</text><text x="102" y="308">DevOps</text><text x="40" y="204">Защита</text><text x="102" y="102">ИИ</text>
+<g class="needle"><polygon points="200,92 214,200 186,200" fill="var(--signal)"/><polygon points="200,308 214,200 186,200" fill="var(--line)"/></g>
+<circle cx="200" cy="200" r="9" fill="var(--ink)"/>
+</svg>
+</div></section>
+
+<section class="scene" id="scene"><div class="stick">
+<div class="night"></div><div class="dusk"></div><div class="stars"></div><div class="waves"></div><div class="glint"></div>
+<svg class="lh" viewBox="0 0 54 158" aria-hidden="true"><g fill="#02070d"><ellipse cx="27" cy="152" rx="32" ry="7"/><polygon points="17,150 37,150 32,38 22,38"/><rect x="15" y="34" width="24" height="5"/><rect x="22" y="18" width="10" height="16"/><polygon points="20,18 34,18 27,6"/></g></svg>
+<div class="origin" aria-hidden="true"><div class="beam b1"></div><div class="beam b2"></div><div class="bloom"></div></div>
+<div class="flash"></div>
+<div class="t t1">Когда не видно берега, любой курс кажется верным.</div>
+<div class="t t2"><h2>Нужен ориентир</h2><p>RUMBCODE подсказывает направление и ведёт по нему до результата.</p></div>
+<div class="fade-t"></div><div class="fade-b"></div><div class="hint">Прокрути вниз</div>
+</div></section>
+
+<section id="problem"><div class="wrap">
+<h2 class="rv">Выбирать IT-путь наугад — обычная история</h2>
+<div class="stats">
+<div class="rv"><div class="big"><span data-to="39">39</span>%</div><p>подростков в странах ОЭСР не определились с будущей профессией</p></div>
+<div class="rv" style="--i:1"><div class="mid">25–30%</div><p>выпускников вузов не могут найти работу после выпуска</p></div>
+</div>
+<p class="lead rv" style="margin-top:40px">Студенты не видят, как выглядит работа в разных сферах, а учёба в одиночку без структуры часто заканчивается на середине.</p>
+<p class="src">Источники: данные ОЭСР (по материалам «Коммерсантъ FM»), научные публикации о трудоустройстве выпускников.</p>
+</div></section>
+
+<section id="how"><div class="wrap">
+<h2 class="rv">Три шага от интереса до результата</h2>
+<ol class="steps">
+<li class="step rv" style="--i:0"><h3>Расскажи о себе</h3><p>Регистрация, пара данных и интересы: что нравится, что получается, что хочется попробовать.</p></li>
+<li class="step rv" style="--i:2"><h3>Выбери направление</h3><p>Платформа предложит несколько подходящих IT-сфер, а ты выберешь одну из них.</p></li>
+<li class="step rv" style="--i:4"><h3>Иди по программе</h3><p>Теория, практика и сроки сдачи на несколько месяцев: ты понимаешь, что делать на каждой неделе.</p></li>
+</ol>
+</div></section>
+
+<section id="product"><div class="wrap">
+<h2 class="rv">Как это будет выглядеть</h2>
+<div class="mocks">
+<div class="mock rv"><header><i></i><i></i><i></i>&nbsp;Регистрация</header><div class="body"><div class="field">Имя</div><div class="field">Курс и вуз</div><div class="chips"><span class="chip on">Данные</span><span class="chip">Игры</span><span class="chip on">Дизайн</span><span class="chip">Безопасность</span></div><div class="fake">Подобрать направления</div></div></div>
+<div class="mock rv" style="--i:1"><header><i></i><i></i><i></i>&nbsp;Подбор направлений</header><div class="body">
+<div class="row"><span>Аналитика данных</span><div class="bar"><b style="width:86%"></b></div></div>
+<div class="row"><span>Продуктовый дизайн</span><div class="bar"><b style="width:71%"></b></div></div>
+<div class="row"><span>Тестирование</span><div class="bar"><b style="width:58%"></b></div></div>
+<div class="fake">Выбрать направление</div></div></div>
+<div class="mock rv" style="--i:2"><header><i></i><i></i><i></i>&nbsp;Программа</header><div class="body">
+<div class="week"><span>Неделя 1 · Основы</span><span class="done">сдано</span></div>
+<div class="week"><span>Неделя 2 · Практика</span><span>до пятницы</span></div>
+<div class="week"><span>Неделя 3 · Мини-проект</span><span>впереди</span></div>
+<div class="fake">Продолжить</div></div></div>
+</div>
+<p class="cap">Концепт интерфейса: экраны и цифры показаны для примера, продукт на стадии идеи.</p>
+</div></section>
+
+<section id="diff"><div class="wrap">
+<h2 class="rv">Чем RUMBCODE отличается</h2>
+<div class="diff">
+<div class="rv"><h3>Помогаем выбрать</h3><p>Не просто каталог курсов: сначала подбор направления под интересы студента.</p></div>
+<div class="rv" style="--i:1"><h3>Цельная программа</h3><p>Вместо набора материалов: последовательность тем, заданий и сроков.</p></div>
+<div class="rv" style="--i:2"><h3>Учёба вместе</h3><p>Командная работа над частью заданий и общение с такими же учащимися.</p></div>
+<div class="rv" style="--i:3"><h3>Рассчитана на вуз</h3><p>Платформа создаётся так, чтобы встроиться в учебный процесс университета.</p></div>
+</div>
+</div></section>
+
+<section class="uni" id="uni"><div class="wrap">
+<div><h2 class="rv">Для университетов</h2><p class="lead rv" style="margin-top:20px">Дополнительная программа, которая помогает студентам определиться с профессией и довести обучение до результата.</p></div>
+<ul class="rv" style="--i:1">
+<li>Студенты одного вуза учатся по единой программе и общаются между собой и с преподавателями.</li>
+<li>Преподаватели видят прогресс группы и вовремя замечают тех, кто отстаёт.</li>
+<li>Студенты проверяют работы друг друга, а преподаватель выборочно контролирует качество.</li>
+</ul>
+</div></section>
+
+<section id="road"><div class="wrap">
+<h2 class="rv">Дорожная карта</h2>
+<div class="road" id="road">
+<div class="stage"><small>Ноябрь – декабрь 2026</small><h3>Проверка идеи</h3><p>Опрос студентов, макет ключевых экранов, презентация и паспорт проекта.</p></div>
+<div class="stage"><small>Январь – март 2027</small><h3>Прототип</h3><p>Рабочая версия с анкетой подбора направлений и первой полной программой.</p></div>
+<div class="stage"><small>Апрель – июнь 2027</small><h3>MVP и пилот</h3><p>Личный кабинет, задания и оценивание. Пилот с одной группой студентов университета.</p></div>
+<div class="stage"><small>С сентября 2027</small><h3>Развитие</h3><p>Доработка по итогам пилота, новые направления и мобильное приложение.</p></div>
+</div>
+</div></section>
+
+<section class="end" id="end"><div class="wrap">
+<h2 class="rv">Хочешь знать больше?</h2>
+<p class="lead rv" style="margin-top:20px">Посмотри презентацию и паспорт проекта.</p>
+<div class="acts rv" style="--i:1"><a class="btn" href="#">Презентация</a><a class="btn ghost" href="#">Паспорт проекта</a></div>
+</div></section>
+<footer><div class="wrap">RUMBCODE · проект университетского акселератора</div></footer>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.2});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+var sc=document.getElementById('scene'),st=sc.firstElementChild;
+function sm(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x)}
+function scene(){var r=sc.getBoundingClientRect(),p=reduce?.9:Math.max(0,Math.min(1,-r.top/(r.height-innerHeight)));
+var a=104-26*sm(.4,.95,p),s=st.style;
+s.setProperty('--d',sm(0,.3,p));s.setProperty('--i',sm(.36,.39,p));s.setProperty('--f',Math.max(0,1-Math.abs(p-.385)/.022));
+s.setProperty('--a',a+'deg');s.setProperty('--gx',(20+(104-a)*3)+'%');
+s.setProperty('--t1',1-sm(.42,.52,p));s.setProperty('--t2',sm(.58,.75,p));s.setProperty('--e',reduce?0:sm(.93,1,p))}
+addEventListener('scroll',scene,{passive:true});addEventListener('resize',scene);scene();
+var num=document.querySelector('[data-to]');
+if(num&&!reduce){var to=+num.dataset.to,done=false;
+new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!done){done=true;o.disconnect();var t0=performance.now();
+(function f(t){var k=Math.min((t-t0)/1400,1);num.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}},{threshold:.6}).observe(num);num.textContent='0'}
+var road=document.getElementById('road'),stages=road.querySelectorAll('.stage');
+function upd(){var r=road.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight*.65-r.top)/r.height));
+road.style.setProperty('--p',reduce?1:p);
+stages.forEach(function(s){var y=s.getBoundingClientRect().top;s.classList.toggle('on',reduce||y<innerHeight*.65)})}
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+})();
+</script>
+</body>
+</html>
