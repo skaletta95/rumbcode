@@ -109,6 +109,8 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--signal);outline-offse
 .stage{position:relative;padding-bottom:36px;opacity:.45;transition:opacity .4s}
 .stage::before{content:"";position:absolute;left:-39px;top:6px;width:21px;height:21px;border-radius:50%;background:var(--bg);border:3px solid var(--line);transition:border-color .4s,background .4s}
 .stage.on{opacity:1}.stage.on::before{border-color:var(--accent);background:var(--accent)}
+.stage.done::before{content:"\2713";display:grid;place-items:center;color:var(--on-accent);font:700 12px/1 var(--head)}
+.stage .ok{display:inline-block;margin-left:10px;padding:2px 10px;border-radius:20px;background:var(--accent);color:var(--on-accent);font-size:12px;font-weight:700;letter-spacing:.02em;vertical-align:1px}
 .stage small{color:var(--accent);font-weight:600}.stage p{color:var(--muted);margin-top:4px;max-width:52ch}
 /* end */
 .end{text-align:left}.end .acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
@@ -151,11 +153,11 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
 <section id="problem"><div class="wrap">
 <h2 class="rv">Выбирать IT-путь наугад — обычная история</h2>
 <div class="stats">
-<div class="rv"><div class="big"><span data-to="39">39</span>%</div><p>подростков в странах ОЭСР не определились с будущей профессией</p></div>
-<div class="rv" style="--i:1"><div class="mid">25–30%</div><p>выпускников вузов не могут найти работу после выпуска</p></div>
+<div class="rv"><div class="big"><span data-to="58">58</span>%</div><p>студентов не знают, кем и где будут работать после вуза</p></div>
+<div class="rv" style="--i:1"><div class="mid">60%</div><p>студентов не умеют уверенно ничего из базового набора для первой работы</p></div>
 </div>
 <p class="lead rv" style="margin-top:40px">Студенты не видят, как выглядит работа в разных сферах, а учёба в одиночку без структуры часто заканчивается на середине.</p>
-<p class="src">Источники: данные ОЭСР (по материалам «Коммерсантъ FM»), научные публикации о трудоустройстве выпускников.</p>
+<p class="src">Источник: опрос студентов университета, 50 респондентов, октябрь – ноябрь 2026.</p>
 </div></section>
 
 <section id="how"><div class="wrap">
@@ -207,7 +209,7 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:14px;border-top:1px soli
 <section id="road"><div class="wrap">
 <h2 class="rv">Дорожная карта</h2>
 <div class="road" id="road">
-<div class="stage"><small>Ноябрь – декабрь 2026</small><h3>Проверка идеи</h3><p>Опрос студентов, макет ключевых экранов, презентация и паспорт проекта.</p></div>
+<div class="stage done"><small>Ноябрь – декабрь 2026<span class="ok">Выполнено</span></small><h3>Проверка идеи</h3><p>Опрос студентов, макет ключевых экранов, презентация и паспорт проекта.</p></div>
 <div class="stage"><small>Январь – март 2027</small><h3>Прототип</h3><p>Рабочая версия с анкетой подбора направлений и первой полной программой.</p></div>
 <div class="stage"><small>Апрель – июнь 2027</small><h3>MVP и пилот</h3><p>Личный кабинет, задания и оценивание. Пилот с одной группой студентов университета.</p></div>
 <div class="stage"><small>С сентября 2027</small><h3>Развитие</h3><p>Доработка по итогам пилота, новые направления и мобильное приложение.</p></div>
